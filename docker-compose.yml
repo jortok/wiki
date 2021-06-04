@@ -1,5 +1,15 @@
 version: '3.1'
-services: 
+services:
+    proxy:
+        image: nginx
+        container_name: proxy
+        restart: unless-stopped
+        ports: 
+            - 80:80
+            - 443:443
+        volumes:
+            - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+            - ./nginx/conf.d:/etc/nginx/conf.d
     md:
         build: .
         container_name: md
