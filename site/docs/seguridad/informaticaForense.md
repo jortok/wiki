@@ -1,7 +1,8 @@
 # Curso de Informática Forense
 
 ## Tabla de contenido
-- [Curso de Informática Forense](#curso-de-informática-forense)
+
+- [Informática Forense](#curso-de-informática-forense)
   - [Tabla de contenido](#tabla-de-contenido)
   - [¿Qué es computo forense?](#qué-es-computo-forense)
   - [Definiciones](#definiciones)
@@ -67,6 +68,7 @@
 > **"Evidencia"** del latín *evidentia*: "visible", "fácil de ver para cualquiera".
 
 ## Definiciones
+
 - **Cómputo forense**: es el uso de métodos y técnicas científicas probadas, con el fin de validar y presentar la evidencia digital, con el propósito de facilitar la reconstrucción de hechos en una investigación.
 - **Ciencia forense**: nos ayuda a establecer respuestas respecto a ciertos hechos en un contexto legal.
 - **Evidencia digital**: son todos los datos almacenados de manera digital.
@@ -74,6 +76,7 @@
 > *"Si dos objetos entran en contacto transfieren parte del material que los incorpora."*  - Locard
 
 ## Etapas del cómputo forense
+
 - **1ra etapa “Identificación”**: reconocer nuestras fuentes de evidencia.
     - Resultados:
       - cadena de custodia
@@ -104,6 +107,7 @@
     - informe ejecutivo.
 
 ### Preguntas en un interrogatorio
+
 Estas son las preguntas que siempre intentaremos resolver:
 - ¿Qué?
 - ¿Cómo?
@@ -119,6 +123,7 @@ Estas son las preguntas que siempre intentaremos resolver:
 | Laptop (Windows / Linux), protectores contra escritura, cámara digital, discos duros externos | Linux Live USB: (Paladin Forensics / Kali), EnCase Imager, FTK Imager Lite | Destornilladores, Cables de red, Cables SATA e IDE, Pinzas y Linterna |
 
 ## Etapa I. Identificación
+
 ### Cadena de custodia
 
 Procedimiento documental en el cual se registra la responsabilidad y custodia de los elementos de evidencia digital, desde su adquisición o generación, hasta su disposición final.
@@ -126,16 +131,21 @@ Procedimiento documental en el cual se registra la responsabilidad y custodia de
 - **NOTA**: Se requiere un formato de cadena de custodia por cada activo de información.
   
 ### Seguimiento documental
+
 Usando un formato más o menos estándar, se hace seguimiento a la evidencia.
 
 ### ¿Quién tiene la evidencia y cuándo?
+
 El proceso y la documentación ayudan a saber quién es el responsable de la evidencia en cada momento.
 
 ### Soporte legal para el proceso de investigación
+
 La CoC (*Chain of Custody*) es un proceso estándar aceptado a nivel internacional.
 
 ### Inventario de Evidencia
+
 #### Primer respondiente
+
 > ¿Quién es? ¿Cómo debe estar preparado? ¿Qué alcance tiene?
 
 El primer respondiente tiene la poestad para entregarte los activos a analizar, los siguientes son algunos datos que debes registrar en tus cadenas de custodia:
@@ -149,12 +159,16 @@ El primer respondiente tiene la poestad para entregarte los activos a analizar, 
 - Número de Inventario
 - Capacidad de Almacenamiento
 - Notas
+
 ### Tipos de adquisición
+
 - **Estática**: Sistemas que están apagados o que no se modifican o alteran al apagarse.
 - **En vivo**: Sistemas que no pueden apagarse, o que al apagarse pierden información relevante.
 
 ## Etapa II. Preservación
+
 ### Creación de una imagen forense
+
 - **Imagen forense**: Copia “bit-a-bit” exacta del contenido de un medio de almacenamiento, que utiliza algún método de verificación digital para garantizar la autenticidad de la información.
 
 ### Sistemas de protección contra escritura por hardware y software
@@ -162,6 +176,7 @@ El primer respondiente tiene la poestad para entregarte los activos a analizar, 
 Por hardware requiere la compra de un dispositivo dedicado, éste impedirá la escritura en el disco. Por software se puede descargar [aquí](https://github.com/msuhanov/Linux-write-blocker).
 
 ### FTK Imager
+
 Es una herramienta de análisis forense disponible en la Web de AccessData, además que permite varios formatos para imágenes. Se puede descargar [aquí](https://accessdata.com/product-download/).
 
 Opciones de disco para montar dentro de FTK Imager:
@@ -170,6 +185,7 @@ Opciones de disco para montar dentro de FTK Imager:
 - **Archivo de imagen**: es una imagen forense que ya este creada.
 
 #### Adquisición de una imagen FTK Imager
+
 Una vez determinada la fuente se debe escoger el formato de salida de la imagen, dentro de las cuales tenemos:
 - **Raw (dd)**: (Data Dump) poco usado porque no soporta compresión.
 - **SMART**: en desuso.
@@ -177,6 +193,7 @@ Una vez determinada la fuente se debe escoger el formato de salida de la imagen,
 - **AFF**: sólo soportado por las herramientas de Access Data.
 
 #### Adquisición de una imagen con EnCase
+
 ENCASE de la empresa Guidance software ahora comprada por Opentext es una herramienta gratuita que podemos bajar directamente desde [aquí](https://www.opentext.com/about/contact-us/contact-opentext).
 
 Primero se adiciona la evidencia:
@@ -194,9 +211,11 @@ Una vez determinada la fuente se debe escoger el formato de salida de la imagen,
 Desventaja: No genera reporte automáticos, hay que tomar los datos manualmente.
 
 ### Comandos Linux para creación de imágenes forenses
+
 La mayoría de las herramientas tienen su opción de correr en linux.
 
 #### Comando dd
+
 Comando linux base que permite copiar información con algunos parámetros más avanzados.
 
 ```
@@ -204,6 +223,7 @@ dd if=/dev/sdb of=/ruta/a/la/usb/imagen01.001
 ```
 
 #### Comando dc3dd
+
 El comando `dc3dd` convierte y copia archivos.
 ```
 dc3dd if=/dev/sdb hofs=/ruta/a/la/usb/imagen02.000 ofsz=300MB hash=md5 hash=sha1 verb=on log=/ruta/a/la/usb/imagen01.txt
@@ -225,8 +245,11 @@ dc3dd if=/dev/sdb hofs=/ruta/a/la/usb/imagen02.000 ofsz=300MB hash=md5 hash=sha1
 - **Operación por bloques**: es lo que realmente hacen los algoritmos MD5 y SHA-1.
 
 ## Etapa III. Análisis de evidencia
+
 ### Sistemas de archivos: FAT y NTFS
+
 #### ¿Qué es un sistema de archivos?
+
 Es un conjunto de reglas y procesos para administrar la información en un medio de almacenamiento.
 
 #### Tipos de archivos
@@ -242,33 +265,39 @@ Es un conjunto de reglas y procesos para administrar la información en un medio
 - **Permisos**: reglas de acceso, modificación de archivos.
 
 #### FAT (File Allocation Table)
+
 - Tabla de asignación de archivos.
 - Máximo de archivos 4GB.
 - Re-implementado como exFAT.
 
 #### NTFS (NT File System)
+
 - Sistema por defecto en la familia de Windows NT.
 - Introdujo el *system journaling*.
 - Propietario de Microsoft y no es 100% compatible.
 
 #### EXT (Extended File System)
+
 - No usa extensiones.
 - Utiliza i-nodos como apuntadores.
 - Minimiza la fragmentación.
 - Puntos de montaje.
 
 #### HFS+
+
 - Usado en dispositivos Mac y iPhone
 - Reduce casi a cero la fragmentación
 - No permite acceso concurrente.
 - Soporte de fechas hasta el 6 de febrero de 2040.
 
 #### APSF
+
 - Multiplataforma.
 - Espacio libre compartido.
 - 2 versiones: *case-sensitive* y *case-insensitive*.
 
 ### Análisis preliminar de sistemas Windows
+
 El sistema de archivos Windows tiene la siguiente estructura:
 ![Sistema de archivos Wndows](img/windows-file-system.png)
 
@@ -284,6 +313,7 @@ A través de la herramienta Fred (Forensic Registry editor) disponible para Linu
 **Nota**: Los números hexadecimales los podemos reconocer por que inician con `0x`.
 
 ### Análisis preliminar de sistemas Unix (Linux y MacOS)
+
 El sistema de archivos UNIX tiene la siguiente estructura:
 ![Estructura de archivos UNIX](img/unix-file-system.gif)
 
@@ -349,6 +379,7 @@ Los números ID de cada usuario no se reutilizan son únicos para cada usuario d
 - **Plugin de Software**: muestra todas las características y datos de aplicaciones instaladas; fecha de modificación, versión, etc.
 
 ### Análisis de logs
+
 Logs de Windows están en `Windows/System32/winevt/logs`
 
 Los tres archivos de log importantes son: 
@@ -365,40 +396,43 @@ Dentro de la carpeta de cada usuario encontramos el archivo `NTUSER.DAT` que nec
 Si bien es cierto el `ShellBags` sólo guarda la configuración de las carpetas e íconos que el usuario visualiza a medida que navega por el escritorio, si se mira con cuidado es como ver las huellas que deja una persona que camino por la arena y es ahí donde la herramienta `ShellBagsView` es muy útil.
 
 ### Referencia del registro de Windows
+
 A continuación, se detallan algunas de las ubicaciones comunes donde un investigador forense puede encontrar información relevante para una investigación dentro del Registro de Windows.
 
 #### Archivo `NTUSER.dat`
+
 Historial de búsqueda:
-```HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Search\Assistant\ACMru
+```bash
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Search\Assistant\ACMru
 ```
 Documentos recientes:
-```
+```bash
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs
 ```
 Documentos recientes de Office:
-```
+```bash
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\10\Word\FileMRU
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\10\Excel \FileMRU
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\10\PowerPoint \FileMRU
 ```
 Comandos ejecutados por el usuario:
-```
+```bash
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\RunMRU
 ```
 Programas ejecutados:
-```
+```bash
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\CurrentVersion\Explorer\UserAssist{GUID}\Count
 ```
 #### Archivo `SOFTWARE`
 
 Versión del Sistema Operativo:
-```
+```sh
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\
 ```
 #### Archivo `SYSTEM`
 
 CurrentControlSet
-```
+```sh
 HKEY_LOCAL_MACHINE\SYSTEM\ControlSet00x
 HKEY_LOCAL_MACHINE\SYSTEM\SelectCurrent
 ```
@@ -406,15 +440,15 @@ HKEY_LOCAL_MACHINE\SYSTEM\SelectCurrent
 **Nota**: El *Control Set* es el conjunto de parámetros de una configuración del Sistema Operativo. La llave `SelectCurrent` es un apuntador a uno de los posibles `ControlSet00x` disponibles, y ese es el que se conoce como `CurrentControlSet`. Al hacer puntos de restauración del sistema operativo y guardar copias del registro, se crean nuevos *Control Sets* que son backups funcionales de configuraciones anteriores, pero la configuración actual del sistema siempre hace referencia al “CurrentControlSet”.
 
 Nombre del computador en red:
-```
+```sh
 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\ComputerName
 ```
 Interfaces de red:
-```
+```sh
 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces
 ```
 Zona horaria del SO:
-```
+```sh
 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation
 ```
 
@@ -432,6 +466,7 @@ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation
 Para que los datos sean más fáilmente leídos es con la aplicación `PECmd.exe` se podrá exportar el archivo `prefetch` para su análisis. Para descargar la herramienta [aquí](https://ericzimmerman.github.io/#!index.md).
 
 ### Análisis de bandejas de reciclaje
+
 La papelera de reciclaje es un espacio de almacenamiento que le permite al usuario borrar un archivo y recuperarlo. Fue creada por Windows para darle al usuario esa posibilidad. Veremos ¿cómo funciona la papelera de reciclaje? y ¿cuáles son las configuraciones internas del sistema para la papelera?
 
 - Espacio de almacenamiento temporal.
@@ -454,23 +489,29 @@ La papelera de reciclaje es un espacio de almacenamiento que le permite al usuar
 8. **Siguientes pasos**: Puede ser que no haya siguientes pasos en la investigación, pero tal vez sí tienes recomendaciones para tu cliente o para quien reciba tus resultados. Tal vez mejorar su sistema de seguridad, instalar algún parche en particular. Este tipo de sugerencias dan mucho valor agregado a tu trabajo. Debes incluirlas cada vez que puedas.
 
 ### Arranque y ejecución de procesos en Linux
+
 Para comprender la ejecución de procesos y la información que estos almacenan en un sistema Linux, es importante entender cómo es el proceso de inicio del Sistema Operativo, qué archivos se acceden durante este proceso y qué información se modifica.
 
 #### Primer paso: El BIOS
+
 El BIOS (Basic Input/Basic Output) es el primer sistema que carga el procesador cuando se enciende. El BIOS se encarga de detectar el hardware disponible y proporcionar un primer acceso a los dispositivos periféricos, así como de identificar un dispositivo desde el cual iniciar el sistema (regularmente, la primera partición de un disco local). Una vez el BIOS encuentra un dispositivo disponible para iniciar, le deja el control del sistema a éste.
 
 #### Segundo paso: El gestor de arranque
+
 En los sistemas Unix existen diferentes gestores de arranque. Éste se encarga de escoger un sistema operativo a partir de una lista de dispositivos y sectores de arranque disponibles. El gestor de arranque más común en Linux probablemente sea GRUB (GRand Unified Bootloader), pero existen otros y es común encontrarlos.
 
 #### Tercer paso: El kernel de Linux
+
 El kernel es el proceso principal que ejecuta el sistema operativo Unix y del que dependen todos los demás procesos. Se encarga de administrar los controladores necesarios para usar el hardware, inicializa el sistema de archivos y prepara la memoria.
 
 #### Cuarto paso: proceso `/sbin/init`
+
 Este proceso se encarga de configurar el entorno de usuario. Los archivos de configuración de este proceso se encuentran en la carpeta `/etc/inittab`, y el primer script que se ejecuta es `/etc/init.d/rcS`.
 
 A nivel lógico, el proceso init es el proceso del que derivan todos los demás procesos automáticos del sistema. Éste ejecuta todos los procesos que se encuentran en la carpeta `/etc/rcS.d/` y en `/etc/rc.boot/`. Estas carpetas son una gran fuente de referencia para revisar los procesos que se ejecutan por defecto al iniciar el sistema.
 
 ### Análisis de archivos de autenticación
+
 Configuración de usuarios:
 - Los usuarios se almacenan en dos archivos:
    - `/etc/passwd`
@@ -512,7 +553,9 @@ user:$1$HESu9xrH$k.o3G93DGoXliQKkPmUgZ0:14699:0:99999:7:::
 [Link de descarga](https://www.autopsy.com/download/)
 
 ## Etapa IV. Presentación
+
 ### Elaboración de un informe ejecutivo y técnico
+
 La siguiente es la estructura ejemplo de un reporte con todos los resultados obtenidos:
 
 ![Estructura del reporte](img/estructura-informes.png)

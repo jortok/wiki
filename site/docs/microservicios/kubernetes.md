@@ -8,8 +8,7 @@
     - [Obtener información](#obtener-información)
     - [Crear un servicio](#crear-un-servicio)
     - [Editar servicios](#editar-servicios)
-  - [Archivos de configuración](#archivos-de-configuración)
-    - [Metrics](#metrics)
+  - [Metrics](#metrics)
 
 ## Algunos comandos
 
