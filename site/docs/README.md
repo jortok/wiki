@@ -31,6 +31,7 @@
   * [sass](desarrollo/sass.md)
 * linux
   * [apt](linux/apt.md)
+  * [archLinux](linux/archLinux.md)
   * [bash](linux/bash.md)
   * [cambioBanner](linux/cambioBanner.md)
   * [cambioHostname](linux/cambioHostname.md)
