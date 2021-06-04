@@ -1,0 +1,11 @@
+version: '3.1'
+services: 
+    md:
+        build: .
+        container_name: md
+        restart: unless-stopped
+        ports: 
+            - 3000:3000
+        volumes: 
+            - ./site/docs:/site/docs
+            - ./site/README.md:/site/README.md
