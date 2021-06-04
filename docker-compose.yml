@@ -10,6 +10,7 @@ services:
         volumes:
             - ./nginx/nginx.conf:/etc/nginx/nginx.conf
             - ./nginx/conf.d:/etc/nginx/conf.d
+            - ./certs/tokunaga.mx:/etc/nginx/certs/tokunaga.mx
     md:
         build: .
         container_name: md
